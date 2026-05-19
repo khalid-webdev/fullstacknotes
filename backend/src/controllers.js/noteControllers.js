@@ -30,3 +30,17 @@ exports.getNotes = async (req, res, next) => {
     next(error)
   }
 }
+
+//update note
+
+exports.updateNote = async(req,res,next)=>{
+try {
+
+
+
+
+
+} catch (error) {
+
+}
+}
