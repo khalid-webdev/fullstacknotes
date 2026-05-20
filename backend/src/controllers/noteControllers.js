@@ -1,7 +1,5 @@
 //import the validators
-
 const { createNoteSchema } = require("../validators/noteValidator");
-
 const { createNoteService, getNoteService, updateNoteService, deleteNoteService } = require('../services/noteServices');
 
 
@@ -33,14 +31,25 @@ exports.getNotes = async (req, res, next) => {
 
 //update note
 
-exports.updateNote = async(req,res,next)=>{
-try {
+exports.updateNote = async (req, res, next) => {
+  try {
 
+    const updateNote = await getNoteService(req.params.id, req.body);
 
+    res.status(200).json({ success: true, data: updateNote })
 
-
-
-} catch (error) {
-
+  } catch (error) {
+    next(error)
+  }
 }
+
+//delete note
+
+exports.deleteNote = async (req, res, next) => {
+  try {
+    await deleteNoteService(req.params.id);
+    res.status(200).json({ success: true, message: "Deleted Successfully!" })
+  } catch (error) {
+    next(error)
+  }
 }
